@@ -6,23 +6,98 @@
   <script id="challenge">
     // 👉 CHALLENGE 1
     function profileActivation(profile, reason) {
+    if (profile.active) {
+      if (reason) {
+        profile.active = false;
+        profile.reason = reason;
+    } else {
+      return "confirm status manually";
+    } }
+ 
+   else {
+    profile.active = true;
+    delete profile.reason; 
+  }
+  return profile; 
+}
+// params: profile object and reason string
+// output: updated profile obj or string if the profile is active and no reason is given
 
-    }
+// if profile is active && reason exist
+  // set profile to inactive
+  // assigning the reason (parameter) to the reason property on the profile
 
+
+// if profile is && no reason
+  // return "confirm reason manually"
+
+
+// if profile is not active
+  // set profile to active
+  // delete the reason property
+
+// return profile
+
+// let testProfile = {
+//   active: false,
+//  reason: reason
+// };
     // 👉 CHALLENGE 2
     function mineSweeper(grid, x, y) {
-
+    if (x < 1 || x > 3 || y < 1 || y > 3) {
+      return "invalid coordinates";
     }
-
+    
+    const square = grid[y - 1][x - 1];
+    if (square === "🟥") {
+      return "🟥 💀";
+    } else if (square === "🟦") {
+      return "🟦 🥳";
+    }
+  }
+// params: 
     // 👉 CHALLENGE 3
-    function booleanize(obj) {
+  
+function booleanize(obj) {
+    const newObj = { ...obj };
+    
+    for (let key in newObj) {
+        if (key.length > 9) {
+            return "shorten all prop names to 9 chars or less";
+        }
 
+        if (newObj[key] === 0) {
+            newObj[key] = false;
+        } else if (newObj[key] === 1) {
+            newObj[key] = true;
+        } else if (newObj[key] === null) {
+            delete newObj[key];
+        }
     }
+
+    return newObj;
+}
 
     // 👉 CHALLENGE 4
-    function scrub(text, forbidden) {
-
+    javascript
+function scrub(text, forbidden) {
+    if (text === "" || forbidden.length === 0) {
+        return text;
     }
+
+    const words = text.split(" ");
+
+    const scrubbedText = words.map(word => {
+        if (forbidden.includes(word.toLowerCase())) {
+            return "x".repeat(word.length);
+        } else {
+            return word;
+        }
+    });
+    return scrubbedText.join(" ");
+}
+
+
 
     // 👉 CHALLENGE 5 (bonus, NOT graded)
     function normalizePhoneNumber(num) {
@@ -191,3 +266,4 @@
 </body>
 
 </html>
+
